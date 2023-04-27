@@ -1,6 +1,3 @@
-import rdkit
-from rdkit import Chem
-from rdkit.Chem import rdmolfiles
 import scipy.io
 
 qm7 = scipy.io.loadmat('qm7.mat')
@@ -19,14 +16,6 @@ charge_to_atom = {
 
 # unit conversion from bohr to angstrom
 BohrToA = 0.529177249
-
-# hybridization state one-hot encoding
-HybridizationToFeature = {
-    rdkit.Chem.rdchem.HybridizationType.SP3 : 4,
-    rdkit.Chem.rdchem.HybridizationType.SP2 : 3,
-    rdkit.Chem.rdchem.HybridizationType.SP  : 2,
-    rdkit.Chem.rdchem.HybridizationType.S   : 1
-}
 
 for i in range(len(Z)):
     filename = f"/Users/pingyang/Documents/ML example/xyz_file/qm7_xyz_{i+1}.xyz"

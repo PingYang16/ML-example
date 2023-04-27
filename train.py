@@ -2,6 +2,8 @@ import os
 import sys
 sys.path.append(os.getcwd())
 
+import scipy.io
+
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import rdmolfiles
@@ -23,6 +25,19 @@ from torch_geometric.loader import DataLoader
 from sklearn.model_selection import ParameterGrid
 
 from GCNmodel import GCN, train, validate
+
+qm7 = scipy.io.loadmat('qm7.mat')
+R = qm7['R']
+Z = qm7['Z']
+T = qm7['T'][0]
+
+# hybridization state one-hot encoding
+HybridizationToFeature = {
+    rdkit.Chem.rdchem.HybridizationType.SP3 : 4,
+    rdkit.Chem.rdchem.HybridizationType.SP2 : 3,
+    rdkit.Chem.rdchem.HybridizationType.SP  : 2,
+    rdkit.Chem.rdchem.HybridizationType.S   : 1
+}
 
 mols = []
 for i in range(7165):
