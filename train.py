@@ -2,6 +2,8 @@ import os
 import sys
 sys.path.append(os.getcwd())
 
+import rdkit
+from rdkit import Chem
 from rdkit.Chem import rdmolfiles
 from rdkit.Chem import rdDetermineBonds
 
