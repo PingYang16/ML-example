@@ -164,8 +164,8 @@ for param in grid:
     for epoch in range(1, epochs + 1):
         train_loss = train(model, train_loader, optimizer, criterion)
         val_loss = validate(model, val_loader, criterion)
-        train_loss.append(train_loss_data)
-        val_loss.append(val_loss_data)
+        train_loss_data.append(train_loss)
+        val_loss_data.append(val_loss)
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             torch.save(model.state_dict(), 'best_model.pt')
