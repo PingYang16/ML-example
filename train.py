@@ -142,7 +142,7 @@ num_classes = 1
 epochs = 1500
 batch_size = 32
 
-best_val_loss = 2000
+best_val = 2000
 best_params = None
 # iterate over hyperparameter combinations
 for param in grid:
@@ -166,7 +166,7 @@ for param in grid:
         val_loss = validate(model, val_loader, criterion)
         train_loss_data.append(train_loss)
         val_loss_data.append(val_loss)
-        if val_loss < best_val_loss:
+        if val_loss < best_val:
             best_val_loss = val_loss
             torch.save(model.state_dict(), 'best_model.pt')
             # store the best parameters
