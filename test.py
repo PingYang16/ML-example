@@ -19,13 +19,14 @@ with open('best_params.pkl', 'rb') as f:
 best_train_loss = np.load('best_train_loss.npy')
 best_val_loss = np.load('best_val_loss.npy')
 
-plt.plot(best_train_loss, label='train', color='red', alpha=0.5)
-plt.plot(best_val_loss, label='validation', color='blue', alpha=0.5)
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.ylim(0, 6000)
-plt.legend()
-plt.savefig('learning_curve.png')
+figure1 = plt.figure()
+figure1.plot(best_train_loss, label='train', color='red', alpha=0.5)
+figure1.plot(best_val_loss, label='validation', color='blue', alpha=0.5)
+figure1.xlabel('Epoch')
+figure1.ylabel('Loss')
+figure1.ylim(0, 6000)
+figure1.legend()
+figure1.savefig('learning_curve.png')
 
 # load the best model
 num_features = 5
@@ -60,9 +61,11 @@ print(f"MAE: {mean_absolute_error(trues, preds)}")
 
 # plot a scatter plot of predicted vs. true values
 # add a red line to show the perfect prediction
-plt.scatter(trues, preds)
-plt.plot([-2250, -500], [-2250, -500], 'red')
-plt.xlabel('True values')
-plt.ylabel('Predicted values')
+# generate second plot
+figure2 = plt.figure()
+figure2.scatter(trues, preds)
+figure2.plot([-2250, -500], [-2250, -500], 'red')
+figure2.xlabel('True values')
+figure2.ylabel('Predicted values')
 
-plt.savefig('gcnmodel.png')
+figure2.savefig('gcnmodel.png')
